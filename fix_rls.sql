@@ -8,36 +8,61 @@ DROP POLICY IF EXISTS "Public access for members" ON members;
 DROP POLICY IF EXISTS "Public members" ON members;
 DROP POLICY IF EXISTS "Enable read access for all users" ON members;
 DROP POLICY IF EXISTS "Enable insert for all users" ON members;
+DROP POLICY IF EXISTS "Only allow specific domain" ON members;
 
-CREATE POLICY "Public access for members"
-ON members
-FOR ALL
-TO public
-USING (true)
-WITH CHECK (true);
+-- CREATE POLICY "Public access for members"
+-- ON members
+-- FOR ALL
+-- TO public
+-- USING (true)
+-- WITH CHECK (true);
 
 -- 2. Grant full public access to events table
 ALTER TABLE events ENABLE ROW LEVEL SECURITY;
 
 DROP POLICY IF EXISTS "Public access for events" ON events;
 DROP POLICY IF EXISTS "Public events" ON events;
+DROP POLICY IF EXISTS "Only allow specific domain" ON events;
 
-CREATE POLICY "Public access for events"
-ON events
-FOR ALL
-TO public
-USING (true)
-WITH CHECK (true);
+-- CREATE POLICY "Public access for events"
+-- ON events
+-- FOR ALL
+-- TO public
+-- USING (true)
+-- WITH CHECK (true);
 
 -- 3. Grant full public access to ticket_orders table
 ALTER TABLE ticket_orders ENABLE ROW LEVEL SECURITY;
 
 DROP POLICY IF EXISTS "Public access for ticket_orders" ON ticket_orders;
 DROP POLICY IF EXISTS "Public ticket_orders" ON ticket_orders;
+DROP POLICY IF EXISTS "Only allow specific domain" ON ticket_orders;
 
-CREATE POLICY "Public access for ticket_orders"
-ON ticket_orders
-FOR ALL
-TO public
-USING (true)
-WITH CHECK (true);
+-- CREATE POLICY "Public access for ticket_orders"
+-- ON ticket_orders
+-- FOR ALL
+-- TO public
+-- USING (true)
+-- WITH CHECK (true);
+
+create policy "Only allow specific domain"
+on public.events
+for all
+using (
+  current_setting('request.headers', true)::json->>'origin' = 'https://lemon-sea-0964aec0f.6.azurestaticapps.net'
+);
+
+create policy "Only allow specific domain"
+on public.members
+for all
+using (
+  current_setting('request.headers', true)::json->>'origin' = 'https://lemon-sea-0964aec0f.6.azurestaticapps.net'
+);
+
+create policy "Only allow specific domain"
+on public.ticket_orders
+for all
+using (
+  current_setting('request.headers', true)::json->>'origin' = 'https://lemon-sea-0964aec0f.6.azurestaticapps.net'
+);
+
