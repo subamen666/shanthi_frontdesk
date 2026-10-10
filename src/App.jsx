@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import './App.css';
 
-const SAVED_EVENT_KEY = 'nsgw_selected_event_id';
+const SAVED_EVENT_KEY = 'shanthi_selected_event_id';
 
 export default function App() {
   const memberProfileRef = useRef(null);
@@ -138,7 +138,7 @@ export default function App() {
             <div>
               <h1 className="brand-title">Shanthi Event & Benefactor Portal</h1>
               <p className="brand-subtitle">
-                Native Sons of the Golden West • Event Registration & Ticketing
+                Shanthi • Event Registration & Ticketing
               </p>
             </div>
           </div>
@@ -172,9 +172,8 @@ export default function App() {
             <button
               type="button"
               onClick={() => setShowConfigModal(true)}
-              className={`db-status-pill ${
-                supabaseStatus.isConfigured ? 'status-connected' : 'status-mock'
-              }`}
+              className={`db-status-pill ${supabaseStatus.isConfigured ? 'status-connected' : 'status-mock'
+                }`}
               title="Click to configure Supabase URL & Key or view SQL"
             >
               <Database className="icon-xs" />
@@ -329,7 +328,7 @@ export default function App() {
       <footer className="footer">
         <div className="footer-content">
           <p>
-            Shanthi Event Application • Native Sons of the Golden West • Supabase Integrated
+            Shanthi Event Application
           </p>
           <button
             type="button"

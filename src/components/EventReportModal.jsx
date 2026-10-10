@@ -216,9 +216,6 @@ export default function EventReportModal({
 
     const csvLines = [
       // Header Banner
-      '"=========================================================================================="',
-      '"NATIVE SONS OF THE GOLDEN WEST (NSGW) - EVENT ATTENDANCE & FINANCIAL REPORT"',
-      '"=========================================================================================="',
       `"Event Name:",${escapeCsv(eventTitle)}`,
       `"Event Year:",${escapeCsv(currentEvent ? currentEvent.year : 'All Years')}`,
       `"Report Generated:",${escapeCsv(dateFormatted)}`,
@@ -342,7 +339,7 @@ export default function EventReportModal({
     const cleanName = currentEvent
       ? currentEvent.event_name.replace(/[^a-zA-Z0-9_-]/g, '_')
       : 'All_Events';
-    const filename = `NSGW_Report_${cleanName}_${fileDate}.csv`;
+    const filename = `Shanthi_Report_${cleanName}_${fileDate}.csv`;
 
     link.setAttribute('href', url);
     link.setAttribute('download', filename);

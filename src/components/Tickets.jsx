@@ -17,7 +17,7 @@ import {
   FileSpreadsheet,
 } from 'lucide-react';
 
-const SAVED_EVENT_KEY = 'nsgw_selected_event_id';
+const SAVED_EVENT_KEY = 'shanthi_selected_event_id';
 
 export default function Tickets({
   selectedMember,

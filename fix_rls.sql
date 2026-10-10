@@ -1,4 +1,4 @@
--- FIX ROW LEVEL SECURITY (RLS) FOR NSGW EVENT APP
+-- FIX ROW LEVEL SECURITY (RLS) FOR Shanthi EVENT APP
 -- Run this in your Supabase Dashboard: SQL Editor -> New Query -> Paste & Run
 
 -- 1. Enable RLS and grant full public access to members table

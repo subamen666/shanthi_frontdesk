@@ -2,8 +2,8 @@ import { createClient } from '@supabase/supabase-js';
 
 // Retrieve credentials from Vite environment variables or localStorage override
 const getCredentials = () => {
-  const localUrl = localStorage.getItem('nsgw_supabase_url');
-  const localKey = localStorage.getItem('nsgw_supabase_key');
+  const localUrl = localStorage.getItem('shanthi_supabase_url');
+  const localKey = localStorage.getItem('shanthi_supabase_key');
 
   const envUrl = import.meta.env.VITE_SUPABASE_URL;
   const envKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -16,15 +16,15 @@ const getCredentials = () => {
 
 export const saveSupabaseCredentials = (url, key) => {
   if (url && key) {
-    localStorage.setItem('nsgw_supabase_url', url.trim());
-    localStorage.setItem('nsgw_supabase_key', key.trim());
+    localStorage.setItem('shanthi_supabase_url', url.trim());
+    localStorage.setItem('shanthi_supabase_key', key.trim());
     window.location.reload();
   }
 };
 
 export const clearSupabaseCredentials = () => {
-  localStorage.removeItem('nsgw_supabase_url');
-  localStorage.removeItem('nsgw_supabase_key');
+  localStorage.removeItem('shanthi_supabase_url');
+  localStorage.removeItem('shanthi_supabase_key');
   window.location.reload();
 };
 
@@ -32,9 +32,9 @@ const { url: supabaseUrl, key: supabaseAnonKey } = getCredentials();
 export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseAnonKey);
 
 // Fallback Local Storage Mock Store when real Supabase is not configured yet
-const LOCAL_STORAGE_MEMBERS_KEY = 'nsgw_mock_members';
-const LOCAL_STORAGE_EVENTS_KEY = 'nsgw_mock_events';
-const LOCAL_STORAGE_ORDERS_KEY = 'nsgw_mock_orders';
+const LOCAL_STORAGE_MEMBERS_KEY = 'shanthi_mock_members';
+const LOCAL_STORAGE_EVENTS_KEY = 'shanthi_mock_events';
+const LOCAL_STORAGE_ORDERS_KEY = 'shanthi_mock_orders';
 
 const getInitialEvents = () => [
   {
@@ -177,7 +177,7 @@ export const supabase = clientInstance || {
               return createQueryChain(filterFn, orderCol, ascending, count);
             },
             async then(resolve) {
-              const key = `nsgw_mock_${tableName}`;
+              const key = `shanthi_mock_${tableName}`;
               let data = JSON.parse(localStorage.getItem(key) || '[]');
               if (filterFn) {
                 data = data.filter(filterFn);
@@ -202,7 +202,7 @@ export const supabase = clientInstance || {
         return createQueryChain();
       },
       async insert(rows) {
-        const key = `nsgw_mock_${tableName}`;
+        const key = `shanthi_mock_${tableName}`;
         const current = JSON.parse(localStorage.getItem(key) || '[]');
         const toInsert = Array.isArray(rows) ? rows : [rows];
         const newRows = toInsert.map((item) => ({
@@ -221,7 +221,7 @@ export const supabase = clientInstance || {
               select() {
                 return {
                   async then(resolve) {
-                    const key = `nsgw_mock_${tableName}`;
+                    const key = `shanthi_mock_${tableName}`;
                     const current = JSON.parse(localStorage.getItem(key) || '[]');
                     let updatedRow = null;
                     const updated = current.map((row) => {
@@ -237,7 +237,7 @@ export const supabase = clientInstance || {
                 };
               },
               async then(resolve) {
-                const key = `nsgw_mock_${tableName}`;
+                const key = `shanthi_mock_${tableName}`;
                 const current = JSON.parse(localStorage.getItem(key) || '[]');
                 let updatedRow = null;
                 const updated = current.map((row) => {
